@@ -24,7 +24,7 @@ from covidprognosis.data.transforms import (
 from covidprognosis.plmodules import XrayDataModule
 from torchvision import transforms
 
-from sip_finetune import SipModule
+from cp_examples.sip_finetune.sip_finetune import SipModule
 
 
 def build_args(arg_defaults=None):
