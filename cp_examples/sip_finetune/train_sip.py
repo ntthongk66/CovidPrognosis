@@ -29,7 +29,7 @@ from cp_examples.sip_finetune.sip_finetune import SipModule
 
 def build_args(arg_defaults=None):
     pl.seed_everything(1234)
-    data_config = Path.cwd() / "../../configs/data.yaml"
+    data_config = Path.cwd() / "configs/data.yaml"
     tmp = arg_defaults
     arg_defaults = {
         "accelerator": "ddp",
@@ -67,14 +67,14 @@ def build_args(arg_defaults=None):
         with open(data_config, "r") as f:
             paths = yaml.load(f, Loader=yaml.SafeLoader)["paths"]
 
-        if args.dataset_name == "nih":
-            args.dataset_dir = paths["nih"]
-        if args.dataset_name == "mimic":
-            args.dataset_dir = paths["mimic"]
-        elif args.dataset_name == "chexpert":
+        # if args.dataset_name == "nih":
+        #     args.dataset_dir = paths["nih"]
+        # if args.dataset_name == "mimic":
+        #     args.dataset_dir = paths["mimic"]
+        if args.dataset_name == "chexpert":
             args.dataset_dir = paths["chexpert"]
-        elif args.dataset_name == "mimic-chexpert":
-            args.dataset_dir = [paths["chexpert"], paths["mimic"]]
+        # elif args.dataset_name == "mimic-chexpert":
+        #     args.dataset_dir = [paths["chexpert"], paths["mimic"]]
         else:
             raise ValueError("Unrecognized path config.")
 

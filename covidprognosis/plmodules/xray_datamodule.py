@@ -59,24 +59,24 @@ def fetch_dataset(
     dataset: Union[cp.data.BaseDataset, TwoImageDataset]
 
     # determine the dataset
-    if dataset_name == "nih":
-        assert not isinstance(dataset_dir, list)
-        dataset = cp.data.NIHChestDataset(
-            directory=dataset_dir,
-            split=split,
-            transform=transform,
-            label_list=label_list,
-            resplit=True,
-        )
-    if dataset_name == "mimic":
-        assert not isinstance(dataset_dir, list)
-        dataset = cp.data.MimicCxrJpgDataset(
-            directory=dataset_dir,
-            split=split,
-            transform=transform,
-            label_list=label_list,
-        )
-    elif dataset_name == "chexpert":
+    # if dataset_name == "nih":
+    #     assert not isinstance(dataset_dir, list)
+    #     dataset = cp.data.NIHChestDataset(
+    #         directory=dataset_dir,
+    #         split=split,
+    #         transform=transform,
+    #         label_list=label_list,
+    #         resplit=True,
+    #     )
+    # if dataset_name == "mimic":
+    #     assert not isinstance(dataset_dir, list)
+    #     dataset = cp.data.MimicCxrJpgDataset(
+    #         directory=dataset_dir,
+    #         split=split,
+    #         transform=transform,
+    #         label_list=label_list,
+    #     )
+    if dataset_name == "chexpert":
         assert not isinstance(dataset_dir, list)
         dataset = cp.data.CheXpertDataset(
             directory=dataset_dir,
@@ -84,15 +84,15 @@ def fetch_dataset(
             transform=transform,
             label_list=label_list,
         )
-    elif dataset_name == "mimic-chexpert":
-        assert isinstance(dataset_dir, list)
-        dataset = cp.data.CombinedXrayDataset(
-            dataset_list=["chexpert_v1", "mimic-cxr"],
-            directory_list=dataset_dir,
-            transform_list=[transform, transform],
-            label_list=[label_list, label_list],
-            split_list=[split, split],
-        )
+    # elif dataset_name == "mimic-chexpert":
+    #     assert isinstance(dataset_dir, list)
+    #     dataset = cp.data.CombinedXrayDataset(
+    #         dataset_list=["chexpert_v1", "mimic-cxr"],
+    #         directory_list=dataset_dir,
+    #         transform_list=[transform, transform],
+    #         label_list=[label_list, label_list],
+    #         split_list=[split, split],
+    #     )
     else:
         raise ValueError(f"dataset {dataset_name} not recognized")
 
@@ -211,7 +211,7 @@ class XrayDataModule(pl.LightningDataModule):
     def add_model_specific_args(parent_parser):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
 
-        parser.add_argument("--dataset_name", default="mimic", type=str)
+        parser.add_argument("--dataset_name", default="chexpert", type=str)
         parser.add_argument("--dataset_dir", default=None, type=str)
         parser.add_argument("--batch_size", default=64, type=int)
         parser.add_argument("--num_workers", default=4, type=int)
