@@ -7,3 +7,4 @@ scipy==1.10.1
 torch==1.7.1
 torchvision==0.8.2
 tqdm==4.50.2
+torchtext==0.8.1
