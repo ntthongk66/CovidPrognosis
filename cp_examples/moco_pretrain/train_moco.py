@@ -20,19 +20,19 @@ from covidprognosis.data.transforms import (
 from covidprognosis.plmodules import XrayDataModule
 from torchvision import transforms
 
-from moco_module import MoCoModule
+from cp_examples.moco_pretrain.moco_module import MoCoModule
 
 
 def build_args(arg_defaults=None):
     pl.seed_everything(1234)
-    data_config = Path.cwd() / "../../configs/data.yaml"
+    data_config = Path.cwd() / "configs/data.yaml"
     tmp = arg_defaults
     arg_defaults = {
         "accelerator": "ddp",
-        "max_epochs": 200,
-        "gpus": 2,
+        "max_epochs": 5,
+        "gpus": 1,
         "num_workers": 10,
-        "batch_size": 128,
+        "batch_size": 32,
         "callbacks": [],
     }
     if tmp is not None:

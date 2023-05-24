@@ -80,11 +80,11 @@ def build_args(arg_defaults=None):
 
     if args.dataset_name in ("chexpert", "mimic", "mimic-chexpert"):
         args.val_pathology_list = [
-            "Atelectasis",
-            "Cardiomegaly",
-            "Consolidation",
-            "Edema",
-            "Pleural Effusion",
+            "Atelectasis", # sự giãn nở phổi không hoàn toàn ( như kiểu phổi cọc cạch)
+            "Cardiomegaly", # phình tim 
+            "Consolidation", # Là một thuật ngữ lâm sàng mô tả sự đông đặc phổi thành một khối có mật độ chắc
+            "Edema", # sưng 
+            "Pleural Effusion", # tràn dịch màng phổi 
         ]
     elif args.dataset_name == "nih":
         args.val_pathology_list = [
